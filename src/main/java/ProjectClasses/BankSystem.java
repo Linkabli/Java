@@ -6,8 +6,7 @@ import java.util.List;
 public class BankSystem {
     private List<Customer> customers;
     private List<Account> accounts;
-
-    BankSystem() {
+    public BankSystem() {
         this.customers = new ArrayList<>();
         this.accounts = new ArrayList<>();
     }

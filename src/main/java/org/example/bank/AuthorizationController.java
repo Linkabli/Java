@@ -1,5 +1,7 @@
 package org.example.bank;
 
+import ProjectClasses.Account;
+import ProjectClasses.BankSystem;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -37,7 +39,7 @@ public class AuthorizationController {
         });
         singUpButton.setOnAction(event -> {
             singUpButton.getScene().getWindow().hide();
-
+            BankSystem Bank = new BankSystem();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("Registration.fxml"));
 
