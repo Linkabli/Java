@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.bank.AuthorizationController">
+   <children>
+      <AnchorPane layoutX="150.0" layoutY="129.0" prefHeight="250.0" prefWidth="250.0" AnchorPane.bottomAnchor="65.0" AnchorPane.topAnchor="130.6">
+         <children>
+            <PasswordField alignment="CENTER" layoutX="33.0" layoutY="127.0" prefHeight="37.0" prefWidth="183.0" promptText="Пароль" AnchorPane.bottomAnchor="85.80000000000001" AnchorPane.leftAnchor="33.0" AnchorPane.rightAnchor="34.20000000000002" AnchorPane.topAnchor="127.0">
+               <font>
+                  <Font size="14.0" />
+               </font></PasswordField>
+            <Label alignment="CENTER" layoutX="33.0" layoutY="14.0" prefHeight="37.0" prefWidth="183.0" text="Авторизация" textOverrun="CLIP" AnchorPane.bottomAnchor="198.8" AnchorPane.leftAnchor="33.0" AnchorPane.rightAnchor="34.20000000000002" AnchorPane.topAnchor="14.0">
+               <font>
+                  <Font name="Chiller" size="18.0" />
+               </font></Label>
+            <TextField alignment="CENTER" layoutX="33.0" layoutY="70.0" prefHeight="38.0" prefWidth="183.0" promptText="Логин" AnchorPane.bottomAnchor="143.0" AnchorPane.leftAnchor="33.0" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="70.0">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
+            <Button layoutX="33.0" layoutY="181.0" mnemonicParsing="false" text="Войти" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="33.0" AnchorPane.rightAnchor="34.20000000000002" AnchorPane.topAnchor="181.0">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+            <Hyperlink layoutX="33.0" layoutY="214.0" text="Hyperlink" />
+         </children>
+      </AnchorPane>
+      <Button fx:id="singUpButton" layoutX="456.0" layoutY="317.0" mnemonicParsing="false" onAction="#initialize" text="Button" />
+   </children>
+</AnchorPane>
