@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -13,7 +14,7 @@ import java.io.IOException;
 
 public class AuthorizationController {
     @FXML
-    private Button singUpButton;
+    private Hyperlink singUpButton;
     @FXML
     void initialize()  {
         singUpButton.setOnAction(event -> {
@@ -21,6 +22,7 @@ public class AuthorizationController {
 
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("MainMenu.fxml"));
+
             try {
                 loader.load();
             } catch (IOException e) {

@@ -2,9 +2,23 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.bank.MainMenuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="550.0" style="-fx-background-color: #D2B48C;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.bank.MainMenuController">
    <children>
-      <Button fx:id="buttonBack" layoutX="216.0" layoutY="146.0" mnemonicParsing="false" text="Button" />
+      <AnchorPane layoutX="34.0" layoutY="58.0" prefHeight="187.0" prefWidth="489.0" style="-fx-background-color: #DEB887;">
+         <children>
+            <Label layoutX="14.0" layoutY="14.0" prefHeight="20.0" prefWidth="54.0" text="Баланс">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label layoutX="159.0" layoutY="14.0" text="Главное меню">
+         <font>
+            <Font name="Cambria" size="36.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

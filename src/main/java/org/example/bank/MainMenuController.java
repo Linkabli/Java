@@ -11,7 +11,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class MainMenuController {
-
     @FXML
     private Button buttonBack;
     @FXML
@@ -26,7 +25,6 @@ public class MainMenuController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
             Parent root = loader.getRoot();
             Stage stage = new Stage();
             stage.setTitle("МойБанк");

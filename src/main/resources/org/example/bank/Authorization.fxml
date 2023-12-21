@@ -24,9 +24,8 @@
                <font>
                   <Font size="14.0" />
                </font></Button>
-            <Hyperlink layoutX="33.0" layoutY="214.0" text="Hyperlink" />
+            <Hyperlink fx:id="singUpButton" layoutX="33.0" layoutY="214.0" text="Регистрация" />
          </children>
       </AnchorPane>
-      <Button fx:id="singUpButton" layoutX="456.0" layoutY="317.0" mnemonicParsing="false" onAction="#initialize" text="Button" />
    </children>
 </AnchorPane>
