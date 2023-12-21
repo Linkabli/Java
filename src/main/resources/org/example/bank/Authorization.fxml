@@ -20,7 +20,7 @@
                <font>
                   <Font size="14.0" />
                </font></TextField>
-            <Button layoutX="33.0" layoutY="181.0" mnemonicParsing="false" text="Войти" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="33.0" AnchorPane.rightAnchor="34.20000000000002" AnchorPane.topAnchor="181.0">
+            <Button fx:id="signIn" layoutX="33.0" layoutY="181.0" mnemonicParsing="false" text="Войти" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="33.0" AnchorPane.rightAnchor="34.20000000000002" AnchorPane.topAnchor="181.0">
                <font>
                   <Font size="14.0" />
                </font></Button>

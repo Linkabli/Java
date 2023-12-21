@@ -13,7 +13,7 @@ import java.io.IOException;
 public class RegistrationController {
     @FXML
     public Hyperlink HyperlinkToSingIn;
-
+    @FXML
     void initialize()  {
         HyperlinkToSingIn.setOnAction(event -> {
             HyperlinkToSingIn.getScene().getWindow().hide();
@@ -28,7 +28,7 @@ public class RegistrationController {
             Parent root = loader.getRoot();
             Stage stage = new Stage();
             stage.setTitle("МойБанк");
-            stage.getIcons().add(new Image("2830284.png"));
+            //stage.getIcons().add(new Image("2830284.png"));
             stage.setScene(new Scene(root));
             stage.show();
         });

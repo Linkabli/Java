@@ -16,7 +16,28 @@ public class AuthorizationController {
     @FXML
     private Hyperlink singUpButton;
     @FXML
+    private Button signIn;
+    @FXML
     void initialize()  {
+        signIn.setOnAction(event -> {
+            signIn.getScene().getWindow().hide();
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("MainMenu.fxml"));
+
+            try {
+                loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Parent root = loader.getRoot();
+            Stage stage = new Stage();
+            stage.setTitle("МойБанк");
+            //stage.getIcons().add(new Image("src/main/resources/Icons_and_pictures/2830284.png"));
+            stage.setScene(new Scene(root));
+            stage.show();
+        });
         singUpButton.setOnAction(event -> {
             singUpButton.getScene().getWindow().hide();
 
