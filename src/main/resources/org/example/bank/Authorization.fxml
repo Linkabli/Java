@@ -6,7 +6,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.bank.AuthorizationController">
    <children>
-      <AnchorPane layoutX="150.0" layoutY="129.0" prefHeight="250.0" prefWidth="250.0" AnchorPane.bottomAnchor="65.0" AnchorPane.topAnchor="130.6">
+      <AnchorPane layoutX="150.0" layoutY="97.0" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: green;" AnchorPane.bottomAnchor="98.60000000000002" AnchorPane.topAnchor="97.0">
          <children>
             <PasswordField alignment="CENTER" layoutX="33.0" layoutY="127.0" prefHeight="37.0" prefWidth="183.0" promptText="Пароль" AnchorPane.bottomAnchor="85.80000000000001" AnchorPane.leftAnchor="33.0" AnchorPane.rightAnchor="34.20000000000002" AnchorPane.topAnchor="127.0">
                <font>

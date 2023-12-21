@@ -7,8 +7,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class BANK extends Application {
-
-
     @Override
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader authorizationLoader = new FXMLLoader(BANK.class.getResource("Authorization.fxml"));
@@ -19,10 +17,7 @@ public class BANK extends Application {
         primaryStage.show();
         //primaryStage.getIcons().add(new Image("C:\\Users\\cibis\\IdeaProjects\\BANK\\src\\main\\resources\\Icons_and_pictures\\2830284.png"));
 
-
-
     }
-
     public static void main(String[] args) {
         launch();
     }
