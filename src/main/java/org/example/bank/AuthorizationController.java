@@ -1,6 +1,5 @@
 package org.example.bank;
 
-import ProjectClasses.BankSystem;
 import ProjectClasses.Customer;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -47,7 +46,6 @@ public class AuthorizationController {
             Parent root = loader.getRoot();
             Stage stage = new Stage();
             stage.setTitle("МойБанк");
-            //stage.getIcons().add(new Image("src/main/resources/Icons_and_pictures/2830284.png"));
             stage.setScene(new Scene(root));
             stage.show();
         });
@@ -75,7 +73,6 @@ public class AuthorizationController {
             Parent root = loader.getRoot();
             Stage stage = new Stage();
             stage.setTitle("МойБанк");
-            //stage.getIcons().add(new Image("src/main/resources/Icons_and_pictures/2830284.png"));
             stage.setScene(new Scene(root));
             stage.show();
         }

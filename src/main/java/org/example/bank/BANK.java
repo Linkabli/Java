@@ -16,7 +16,6 @@ public class BANK extends Application {
         primaryStage.setScene(authorizationScene);
         primaryStage.show();
         //primaryStage.getIcons().add(new Image("C:\\Users\\cibis\\IdeaProjects\\BANK\\src\\main\\resources\\Icons_and_pictures\\2830284.png"));
-
     }
     public static void main(String[] args) {
         launch();
