@@ -10,12 +10,17 @@ public class Customer {
     private String password;
     private List<Account> accounts;
 
-    Customer(String name, String lastname, String login, String password) {
+    public Customer(String name, String lastname, String login, String password) {
         this.firstname = name;
         this.lastname = lastname;
         this.login = login;
         this.password = password;
         this.accounts = new ArrayList<>();
+    }
+
+    public Customer(String login, String password) {
+        this.login = login;
+        this.password = password;
     }
 
     public String getFirstname() {

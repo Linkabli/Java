@@ -8,7 +8,7 @@
    <children>
       <AnchorPane layoutX="150.0" layoutY="97.0" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: green;" AnchorPane.bottomAnchor="98.60000000000002" AnchorPane.topAnchor="97.0">
          <children>
-            <PasswordField alignment="CENTER" layoutX="33.0" layoutY="127.0" prefHeight="37.0" prefWidth="183.0" promptText="Пароль" AnchorPane.bottomAnchor="85.80000000000001" AnchorPane.leftAnchor="33.0" AnchorPane.rightAnchor="34.20000000000002" AnchorPane.topAnchor="127.0">
+            <PasswordField fx:id="passwordText" alignment="CENTER" layoutX="33.0" layoutY="127.0" prefHeight="37.0" prefWidth="183.0" promptText="Пароль" AnchorPane.bottomAnchor="85.80000000000001" AnchorPane.leftAnchor="33.0" AnchorPane.rightAnchor="34.20000000000002" AnchorPane.topAnchor="127.0">
                <font>
                   <Font size="14.0" />
                </font></PasswordField>
@@ -16,7 +16,7 @@
                <font>
                   <Font name="Chiller" size="18.0" />
                </font></Label>
-            <TextField alignment="CENTER" layoutX="33.0" layoutY="70.0" prefHeight="38.0" prefWidth="183.0" promptText="Логин" AnchorPane.bottomAnchor="143.0" AnchorPane.leftAnchor="33.0" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="70.0">
+            <TextField fx:id="loginText" alignment="CENTER" layoutX="33.0" layoutY="70.0" prefHeight="38.0" prefWidth="183.0" promptText="Логин" AnchorPane.bottomAnchor="143.0" AnchorPane.leftAnchor="33.0" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="70.0">
                <font>
                   <Font size="14.0" />
                </font></TextField>
