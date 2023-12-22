@@ -27,8 +27,11 @@ public class Customer {
         accounts.add(account);
     }
 
-    public void createAccount() {
-        account = new Account();
+    public void createAccount(double balance) {
+        account = new Account(this, balance);
+    }
+    public void createCredintAccount(double balance) {
+        creditAccount = new CreditAccount();
     }
 
 
@@ -38,8 +41,7 @@ public class Customer {
 
 
 
-
-
+/////////////////////////////////// get and set
     public String getFirstname() {
         return firstname;
     }
