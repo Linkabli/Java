@@ -1,6 +1,5 @@
 package org.example.bank;
 
-import ProjectClasses.Account;
 import ProjectClasses.BankSystem;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
