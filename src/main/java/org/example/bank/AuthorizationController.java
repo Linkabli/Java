@@ -1,5 +1,6 @@
 package org.example.bank;
 
+import ProjectClasses.BankSystem;
 import ProjectClasses.Customer;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +26,8 @@ public class AuthorizationController {
     private PasswordField passwordText;
     @FXML
     void initialize()  {
+
+
         signIn.setOnAction(event -> {
             try {
                 loginUserAction(loginText.getText().trim(), passwordText.getText().trim());

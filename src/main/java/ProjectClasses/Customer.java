@@ -8,6 +8,7 @@ public class Customer {
     private String lastname;
     private String login;
     private String password;
+    private Account account;
     private List<Account> accounts;
 
     public Customer(String name, String lastname, String login, String password) {
@@ -22,6 +23,22 @@ public class Customer {
         this.login = login;
         this.password = password;
     }
+    void addAccount(Account account) {
+        accounts.add(account);
+    }
+
+    public void createAccount() {
+        account = new Account();
+    }
+
+
+
+
+
+
+
+
+
 
     public String getFirstname() {
         return firstname;
@@ -57,9 +74,5 @@ public class Customer {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    void addAccount(Account account) {
-        accounts.add(account);
     }
 }

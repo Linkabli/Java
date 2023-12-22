@@ -34,5 +34,6 @@
          <font>
             <Font name="Ink Free" size="18.0" />
          </font></Label>
+      <Button layoutX="25.0" layoutY="322.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="251.0" text="Button" />
    </children>
 </AnchorPane>

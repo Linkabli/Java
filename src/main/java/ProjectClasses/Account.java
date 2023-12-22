@@ -1,10 +1,11 @@
 package ProjectClasses;
 
-public class Account {
+public class Account extends Customer {
     private Customer owner;
     private double balance;
 
     Account(Customer owner, double initialBalance) {
+        super();
         this.owner = owner;
         this.balance = initialBalance;
     }
