@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class RegistrationController {
     @FXML
@@ -26,16 +27,15 @@ public class RegistrationController {
     public Button registrationButton;
     @FXML
     void initialize()  {
+        DataBaseHandler dbHandler = new DataBaseHandler();
         registrationButton.setOnAction(event -> {
-        String fistNameText = name_field.getText().trim();
-        String lastnameText = lastname_field.getText().trim();
-        String loginText = login_field.getText().trim();
-        String passwordText = password_field.getText().trim();
-        if(!fistNameText.isEmpty() &&
-                !lastnameText.isEmpty() &&
-                !loginText.isEmpty() &&
-                !passwordText.isEmpty()) {
-            registerUser(fistNameText, lastnameText, loginText, passwordText);
+            try {
+                dbHandler.signUpUser(name_field.getText().trim(), lastname_field.getText().trim(), login_field.getText().trim(), password_field.getText().trim());
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
             registrationButton.getScene().getWindow().hide();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("Authorization.fxml"));
@@ -50,8 +50,8 @@ public class RegistrationController {
             //stage.getIcons().add(new Image("2830284.png"));
             stage.setScene(new Scene(root));
             stage.show();
-        }
         });
+
         HyperlinkToSingIn.setOnAction(event -> {
             HyperlinkToSingIn.getScene().getWindow().hide();
 

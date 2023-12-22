@@ -5,5 +5,5 @@ public class Const {
         public static final String USER_NAME = "firstname";
         public static final String USER_LASTNAME = "lastname";
         public static final String USER_LOGIN = "login";
-        public static final String USER_Pass = "password";
+        public static final String USER_PASS = "password";
     }
