@@ -27,18 +27,9 @@ public class Customer {
         accounts.add(account);
     }
 
-    public void createAccount() {
-        account = new Account();
-    }
-
-
-
-
-
-
-
-
-
+//    public void createAccount() {
+//        account = new Account();
+//    }
 
     public String getFirstname() {
         return firstname;
