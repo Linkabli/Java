@@ -9,34 +9,22 @@ public class Customer {
     private String login;
     private String password;
     private Account account;
-    private List<Account> accounts;
+    private double balance;
 
-    public Customer(String name, String lastname, String login, String password) {
+    public Customer(String name, String lastname, String login, String password, Double balance) {
         this.firstname = name;
         this.lastname = lastname;
         this.login = login;
         this.password = password;
-        this.accounts = new ArrayList<>();
+        if (balance == null) {
+            balance = 0.;
+        }
+        account = new Account(this, balance);
     }
 
     public Customer(String login, String password) {
         this.login = login;
         this.password = password;
-    }
-    void addAccount(Account account) {
-        accounts.add(account);
-    }
-
-//    public void createAccount() {
-//        account = new Account();
-//    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
     }
 
     public String getLogin() {
@@ -46,24 +34,16 @@ public class Customer {
     public String getPassword() {
         return password;
     }
-
-    public void setAccounts(List<Account> accounts) {
-        this.accounts = accounts;
+    public Account getAccount() {
+        return account;
     }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public double getBalance() {
+        return balance;
     }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public String getLastname() {
+        return lastname;
     }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public String getFirstname() {
+        return firstname;
     }
 }

@@ -1,6 +1,6 @@
 package ProjectClasses;
 
-class CreditAccount extends Account {
+public class CreditAccount extends Account {
     private double creditLimit;
     private double interestRate;
 
@@ -17,8 +17,7 @@ class CreditAccount extends Account {
             System.out.println("Exceeded credit limit");
         }
     }
-    void chargeInterest() {
-        double interest = getBalance() * interestRate / 100;
-        deposit(interest);
+    public double getCreditLimit() {
+        return creditLimit;
     }
 }
