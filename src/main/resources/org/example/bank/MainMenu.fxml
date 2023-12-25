@@ -25,7 +25,7 @@
                <children>
                   <Label fx:id="CreditBalance" layoutX="14.0" layoutY="23.0" text="Кредитный баланс:" />
                </children></AnchorPane>
-            <Button layoutX="368.0" layoutY="38.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="106.0" text="Пополнить" AnchorPane.rightAnchor="25.600000000000023" />
+            <Button fx:id="DepositButton" layoutX="368.0" layoutY="38.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="106.0" text="Пополнить" AnchorPane.rightAnchor="25.600000000000023" />
             <Button layoutX="368.0" layoutY="113.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="106.0" text="Списать" />
             <Label layoutX="25.0" layoutY="10.0" text="Кошелёк">
                <font>

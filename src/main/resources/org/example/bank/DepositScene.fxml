@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="213.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.bank.DepositScene">
+   <children>
+      <Label layoutX="55.0" layoutY="14.0" text="Окно пополнения">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="81.0" layoutY="66.0" text="введите сумму:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField layoutX="56.0" layoutY="100.0" AnchorPane.bottomAnchor="87.4" />
+      <Button layoutX="55.0" layoutY="141.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="150.0" text="Пополнить" />
+   </children>
+</AnchorPane>
