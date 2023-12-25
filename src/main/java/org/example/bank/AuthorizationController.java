@@ -1,6 +1,5 @@
 package org.example.bank;
 
-import ProjectClasses.BankSystem;
 import ProjectClasses.Customer;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,8 +23,9 @@ public class AuthorizationController {
     private TextField loginText;
     @FXML
     private PasswordField passwordText;
+
     @FXML
-    void initialize()  {
+    void initialize() {
 
 
         signIn.setOnAction(event -> {
@@ -53,34 +53,46 @@ public class AuthorizationController {
             stage.show();
         });
     }
+
     private void loginUserAction(String login, String password) throws SQLException {
         DataBaseHandler dbHandler = new DataBaseHandler();
         Customer customer = new Customer(login, password);
         ResultSet result = dbHandler.getUser(customer);
         int i = 0;
-        while(result.next()) {
-        i++;
+        while (result.next()) {
+            i++;
         }
         if (i >= 1) {
             signIn.getScene().getWindow().hide();
 
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("MainMenu.fxml"));
-
             try {
-                loader.load();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
+
+                // Создание своей фабрики контроллера
+                loader.setControllerFactory(controllerClass -> {
+                    if (controllerClass == MainMenuController.class) {
+                        // Используйте свой контроллер, если это MainMenuController
+                        return new MainMenuController(login);
+                    } else {
+                        try {
+                            // В противном случае используйте стандартный механизм
+                            return controllerClass.newInstance();
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                });
+
+                Parent root = loader.load();
+                Stage stage = new Stage();
+                stage.setTitle("МойБанк");
+                stage.setScene(new Scene(root));
+                stage.show();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-            Parent root = loader.getRoot();
-            Stage stage = new Stage();
-            stage.setTitle("МойБанк");
-            stage.setScene(new Scene(root));
-            stage.show();
         }
     }
-
 }
 
 

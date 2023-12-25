@@ -1,8 +1,5 @@
 package ProjectClasses;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Customer {
     private String firstname;
     private String lastname;
@@ -10,6 +7,7 @@ public class Customer {
     private String password;
     private Account account;
     private double balance;
+    private TransactionHistory transactionHistory;
 
     public Customer(String name, String lastname, String login, String password, Double balance) {
         this.firstname = name;
@@ -20,6 +18,7 @@ public class Customer {
             balance = 0.;
         }
         account = new Account(this, balance);
+        transactionHistory = new TransactionHistory();
     }
 
     public Customer(String login, String password) {

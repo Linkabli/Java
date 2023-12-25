@@ -6,10 +6,12 @@ public class Account {
     private Transaction newTransaction;
     private double amount;
     private int indexType;
+    private CreditAccount creditAccount;
 
     Account(Customer owner, double initialBalance) {
         this.owner = owner;
         this.balance = initialBalance;
+
     }
 
     void deposit(double amount) { //пополнение

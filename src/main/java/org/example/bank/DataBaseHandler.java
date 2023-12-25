@@ -1,8 +1,6 @@
 package org.example.bank;
 
-import ProjectClasses.CreditAccount;
 import ProjectClasses.Customer;
-
 import java.sql.*;
 
 public class DataBaseHandler extends Configs {
@@ -27,24 +25,6 @@ public class DataBaseHandler extends Configs {
         }
         return resSet;
     }
-
-    public ResultSet getUserDATA(Customer user, CreditAccount creditAccount) {
-        ResultSet resSet = null;
-        String select = "SELECT * FROM " + Const.USER_TABLE + " WHERE " + Const.USER_LOGIN + "=? AND "
-                + Const.USER_NAME + "=? AND " + Const.USER_BALANCE + "=? AND " +
-                Const.USER_CREDIT_LIMIT + "=?";
-        try {
-            PreparedStatement prSt = getDbConnection().prepareStatement(select);
-            prSt.setString(1, user.getLogin());
-            prSt.setString(2, user.getFirstname());
-            prSt.setDouble(3, user.getBalance());
-            prSt.setDouble(4, creditAccount.getCreditLimit());
-            resSet = prSt.executeQuery();
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return resSet;
-    }
     public void signUpUser(String firstName, String lastName, String login, String password) throws SQLException, ClassNotFoundException {
         String insert = "INSERT INTO " + Const.USER_TABLE + "(" +
                 Const.USER_NAME + ", " + Const.USER_LASTNAME + ", " + Const.USER_LOGIN + ", " + Const.USER_PASS + ")" +
@@ -57,4 +37,30 @@ public class DataBaseHandler extends Configs {
 
         prSt.executeUpdate();
     }
+    public Customer getUserDataByName(String username) {
+        Customer user = null;
+        String select = "SELECT * FROM " + Const.USER_TABLE + " WHERE " + Const.USER_LOGIN + "=?";
+        try {
+            PreparedStatement prSt = getDbConnection().prepareStatement(select);
+            prSt.setString(1, username);
+            ResultSet resSet = prSt.executeQuery();
+
+            if (resSet.next()) {
+                // Создаем объект Customer и заполняем его данными из ResultSet
+                user = new Customer(
+                        resSet.getString(Const.USER_NAME),
+                        resSet.getString(Const.USER_LASTNAME),
+                        resSet.getString(Const.USER_LOGIN),
+                        resSet.getString(Const.USER_PASS),
+                        resSet.getDouble(Const.USER_BALANCE)
+
+                );
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+
 }
