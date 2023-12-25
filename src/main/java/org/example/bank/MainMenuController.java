@@ -3,6 +3,7 @@ package org.example.bank;
 import ProjectClasses.Customer;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -42,11 +43,33 @@ public class MainMenuController {
     }
     public Customer DepositButton(Customer user) throws IOException {
         Stage DepositStage = new Stage();
-        DataBaseHandler dbHandler = new DataBaseHandler();
-        FXMLLoader Loader = new FXMLLoader(BANK.class.getResource("DepositScene.fxml"));
-        Scene depositScene = new Scene(Loader.load(), 250, 213);
-        DepositStage.setScene(depositScene);
-        DepositStage.show();
+        try {
+            FXMLLoader Loader = new FXMLLoader(getClass().getResource("DepositScene.fxml"));
+
+            // Создание своей фабрики контроллера
+            Loader.setControllerFactory(controllerClass -> {
+                if (controllerClass == DepositScene.class) {
+                    // Используйте свой контроллер, если это DepositScene
+                    return new DepositScene(user);
+                } else {
+                    try {
+                        // В противном случае используйте стандартный механизм
+                        return controllerClass.newInstance();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
+
+            // Теперь загружаем FXML после установки фабрики контроллера
+            Parent root = Loader.load();
+            Scene depositScene = new Scene(root, 250, 213);
+            DepositStage.setScene(depositScene);
+            DepositStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return user;
     }
     public Customer ReturnNewDATA() {
