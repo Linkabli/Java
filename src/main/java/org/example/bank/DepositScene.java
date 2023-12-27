@@ -14,7 +14,7 @@ public class DepositScene {
     private TextField DepositField;
     private Customer user;
     private Stage stage;
-    Transaction tempTransaction;
+    private Transaction tempTransaction;
 
     public DepositScene(Customer user, Stage stage) {
         this.user = user;
@@ -26,7 +26,6 @@ public class DepositScene {
         ButtonDepositAction.setOnAction(actionEvent -> {
             try {
                 double balance = Double.parseDouble(DepositField.getText());
-                // Проверка на положительность суммы
                 if (balance <= 0) {
                     System.out.println("Введите положительное значение для депозита.");
                     return;
@@ -39,6 +38,5 @@ public class DepositScene {
                 System.out.println("Введите корректное числовое значение для депозита.");
             }
         });
-        System.out.println(user.getLastname());
     }
 }

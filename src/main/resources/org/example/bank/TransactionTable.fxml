@@ -3,13 +3,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.bank.TransactionTable">
    <children>
-      <TableView layoutX="24.0" layoutY="21.0" prefHeight="357.0" prefWidth="555.0">
+      <TableView fx:id="TableView" layoutX="24.0" layoutY="21.0" prefHeight="357.0" prefWidth="555.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn fx:id="ColumnNumber" prefWidth="35.20001220703125" text="№" />
+          <TableColumn fx:id="ColumnLogin" prefWidth="96.5999984741211" text="Логин" />
+            <TableColumn fx:id="ColumnName" prefWidth="103.4000244140625" text="Имя" />
+            <TableColumn fx:id="ColumnSum" prefWidth="88.4000244140625" text="Сумма" />
+            <TableColumn fx:id="ColumnType" prefWidth="109.20001220703125" text="Тип" />
+            <TableColumn fx:id="ColumnDate" prefWidth="127.20001220703125" text="Дата" />
         </columns>
       </TableView>
    </children>

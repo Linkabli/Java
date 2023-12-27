@@ -8,7 +8,7 @@ public class TransactionHistory {
     private List<Transaction> transactions;
     private int indexTransaction;
 
-    TransactionHistory() {
+    public TransactionHistory() {
         this.transactions = new ArrayList<>();
         indexTransaction = 1;
   }
@@ -16,5 +16,8 @@ public class TransactionHistory {
     void addTransaction(Transaction transaction) {
         transactions.add(transaction);
         indexTransaction++;
+    }
+    public List<Transaction> getList() {
+        return transactions;
     }
 }

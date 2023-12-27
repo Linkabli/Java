@@ -52,7 +52,8 @@ public class MainMenuController {
             OpenTransactionHistory(signedUser.get());
         });
         TransanctionToClient.setOnAction(actionEvent -> {
-            TransanctionToClientAction(signedUser.get());
+            signedUser.set(TransanctionToClientAction(signedUser.get()));
+            UpdateScene(signedUser.get());
         });
     }
     public Customer DepositButton(Customer user) throws IOException {
@@ -80,8 +81,6 @@ public class MainMenuController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        // Возвращаем обновленного пользователя после пополнения
         return ReturnNewDATA();
     }
 
@@ -123,13 +122,13 @@ public class MainMenuController {
             e.printStackTrace();
         }
     }
-    public void TransanctionToClientAction(Customer user) {
+    public Customer TransanctionToClientAction(Customer user) {
         Stage TransanctionToClientStage = new Stage();
         try {
             FXMLLoader Loader = new FXMLLoader(getClass().getResource("TransactionToClient.fxml"));
             Loader.setControllerFactory(controllerClass -> {
                 if (controllerClass == TransactionToClient.class) {
-                    return new TransactionToClient(user);
+                    return new TransactionToClient(user, TransanctionToClientStage);
                 } else {
                     try {
                         return controllerClass.newInstance();
@@ -147,5 +146,6 @@ public class MainMenuController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return ReturnNewDATA();
     }
 }

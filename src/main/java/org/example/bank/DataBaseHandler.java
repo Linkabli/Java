@@ -2,9 +2,12 @@ package org.example.bank;
 
 import ProjectClasses.Customer;
 import ProjectClasses.Transaction;
+import ProjectClasses.TransactionHistory;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DataBaseHandler extends Configs {
     Connection dbConnection;
@@ -66,9 +69,7 @@ public class DataBaseHandler extends Configs {
         return user;
     }
     public void updateUserBalance(Customer user, double balance, Transaction transaction) {
-        System.out.println("----" + balance);
         double newBalance = user.getBalance() + balance;
-        System.out.println("----" + newBalance);
         Date Date1 = Date.valueOf(transaction.getCurrentDate());
         String update = "UPDATE " + Const.USER_TABLE + " SET " + Const.USER_BALANCE + "=? WHERE " + Const.USER_LOGIN + "=?";
         String insertTransaction = "INSERT INTO " +
@@ -99,5 +100,59 @@ public class DataBaseHandler extends Configs {
             e.printStackTrace();
         }
     }
+    public void TransactionToClient(Customer user, String login, double amount, Transaction transaction) {
+        Date Date1 = Date.valueOf(transaction.getCurrentDate());
+        double newBalanceUser = -amount;
+        Customer Client = null;
+        String select = "SELECT * FROM " + Const.USER_TABLE + " WHERE " + Const.USER_LOGIN + "=?";
+        try {
+            PreparedStatement prSt = getDbConnection().prepareStatement(select);
+            prSt.setString(1, login);
+            ResultSet resSet = prSt.executeQuery();
+            if (resSet.next()) {
+                // Создаем объект Customer и заполняем его данными из ResultSet
+                Client = new Customer(
+                        resSet.getString(Const.USER_NAME),
+                        resSet.getString(Const.USER_LASTNAME),
+                        resSet.getString(Const.USER_LOGIN),
+                        resSet.getString(Const.USER_PASS),
+                        resSet.getDouble(Const.USER_BALANCE),
+                        resSet.getDouble(Const.USER_CREDIT_LIMIT),
+                        resSet.getDouble(Const.USER_CREDIT_BALANCE)
+                );
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        int typeUser = -transaction.getType();
+        Transaction TransactionClient = new Transaction(Client.getAccount(), amount, transaction.getType());
+        Transaction TransactionUser = new Transaction(user.getAccount(), amount, typeUser);
+        updateUserBalance(user, newBalanceUser, TransactionUser);
+        updateUserBalance(Client, amount, TransactionClient);
+    }
 
+    public List<TransactionHistory> getTransactionHistoryFromDatabase(ArrayList<TransactionHistory> list, Customer user) throws SQLException {
+        String select = "SELECT * FROM " + Const.USER_TABLE + " WHERE " + Const.USER_LOGIN + "=?";
+        try {
+            PreparedStatement prSt = getDbConnection().prepareStatement(select);
+            prSt.setString(1, username);
+            ResultSet resSet = prSt.executeQuery();
+
+            if (resSet.next()) {
+
+                user = new Customer(
+                        resSet.getString(Const.USER_NAME),
+                        resSet.getString(Const.USER_LASTNAME),
+                        resSet.getString(Const.USER_LOGIN),
+                        resSet.getString(Const.USER_PASS),
+                        resSet.getDouble(Const.USER_BALANCE),
+                        resSet.getDouble(Const.USER_CREDIT_LIMIT),
+                        resSet.getDouble(Const.USER_CREDIT_BALANCE)
+                );
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 }
