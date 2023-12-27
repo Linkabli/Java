@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+<AnchorPane prefHeight="265.0" prefWidth="266.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.bank.TransactionToClient">
+   <children>
+      <Label layoutX="63.0" layoutY="29.0" text="Перевод средств">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="58.0" layoutY="183.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="150.0" text="Перевести" />
+      <TextField layoutX="58.0" layoutY="85.0" prefHeight="27.0" prefWidth="150.0" />
+      <TextField layoutX="58.0" layoutY="141.0" prefHeight="27.0" prefWidth="150.0" />
+      <Label layoutX="59.0" layoutY="67.0" text="Введите имя пользователя" />
+      <Label layoutX="58.0" layoutY="123.0" text="Введите сумму перевода" />
+   </children>
+</AnchorPane>

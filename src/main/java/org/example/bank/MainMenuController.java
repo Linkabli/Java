@@ -1,6 +1,5 @@
 package org.example.bank;
 
-import ProjectClasses.Account;
 import ProjectClasses.CreditAccount;
 import ProjectClasses.Customer;
 import javafx.fxml.FXML;
@@ -24,6 +23,10 @@ public class MainMenuController {
     private Button DepositButton;
     @FXML
     private Label CreditBalance;
+    @FXML
+    private Button TransactionHistory;
+    @FXML
+    private Button TransanctionToClient;
 
     public MainMenuController(String login) {
         this.username = login;
@@ -31,22 +34,27 @@ public class MainMenuController {
 
     @FXML
     void initialize() {
-        Customer signedUser = ReturnNewDATA();
-        if (signedUser != null) {
-            UpdateScene(signedUser);
+        AtomicReference<Customer> signedUser = new AtomicReference<>(ReturnNewDATA());
+        if (signedUser.get() != null) {
+            UpdateScene(signedUser.get());
         } else {
             System.out.println("Пользователь не найден.");
         }
-
         DepositButton.setOnAction(actionEvent -> {
             try {
-                DepositButton(signedUser);
+                signedUser.set(DepositButton(signedUser.get()));
+                UpdateScene(signedUser.get());
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         });
+        TransactionHistory.setOnAction(actionEvent -> {
+            OpenTransactionHistory(signedUser.get());
+        });
+        TransanctionToClient.setOnAction(actionEvent -> {
+            TransanctionToClientAction(signedUser.get());
+        });
     }
-
     public Customer DepositButton(Customer user) throws IOException {
         Stage DepositStage = new Stage();
         try {
@@ -67,14 +75,14 @@ public class MainMenuController {
             Parent root = Loader.load();
             Scene depositScene = new Scene(root, 250, 213);
             DepositStage.setScene(depositScene);
-            DepositStage.showAndWait(); // Ждем закрытия окна DepositScene перед продолжением
-
-            UpdateScene(ReturnNewDATA()); // Обновляем главный экран после закрытия окна DepositScene
+            DepositStage.showAndWait();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return user;
+
+        // Возвращаем обновленного пользователя после пополнения
+        return ReturnNewDATA();
     }
 
     public Customer ReturnNewDATA() {
@@ -87,7 +95,57 @@ public class MainMenuController {
         CreditAccount creditAccount = user.getCreditAccount();
         HelloLabel.setText("Здравствуйте, " + user.getFirstname());
         BalanceLabel.setText("Основной баланс: " + user.getBalance() + " ₽");
-        CreditBalance.setText("Кредитный баланс: " + creditAccount.getBalance() + " ₽ / "+ creditAccount.getCreditLimit() + " ₽");
+        CreditBalance.setText("Кредитный баланс: " + creditAccount.getBalance() + " ₽ / " + creditAccount.getCreditLimit() + " ₽");
         System.out.println(user.getBalance());
+    }
+
+    public void OpenTransactionHistory(Customer user) {
+        Stage TransactionsStage = new Stage();
+        try {
+            FXMLLoader Loader = new FXMLLoader(getClass().getResource("TransactionTable.fxml"));
+
+            Loader.setControllerFactory(controllerClass -> {
+                if (controllerClass == TransactionTable.class) {
+                    return new TransactionTable(user, TransactionsStage);
+                } else {
+                    try {
+                        return controllerClass.newInstance();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
+            Parent root = Loader.load();
+            Scene TransanctionsScene = new Scene(root, 600, 400);
+            TransactionsStage.setScene(TransanctionsScene);
+            TransactionsStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void TransanctionToClientAction(Customer user) {
+        Stage TransanctionToClientStage = new Stage();
+        try {
+            FXMLLoader Loader = new FXMLLoader(getClass().getResource("TransactionToClient.fxml"));
+            Loader.setControllerFactory(controllerClass -> {
+                if (controllerClass == TransactionToClient.class) {
+                    return new TransactionToClient(user);
+                } else {
+                    try {
+                        return controllerClass.newInstance();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
+
+            Parent root = Loader.load();
+            Scene TransanctionToClientScene = new Scene(root);
+            TransanctionToClientStage.setScene(TransanctionToClientScene);
+            TransanctionToClientStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -1,18 +1,30 @@
 package ProjectClasses;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Transaction {
     private Account account;
     private double amount;
-    private Date timestamp;
-    private String type;
+    private int type;
+    private LocalDate currentDate;
     private TransactionHistory transactionHistory;
-
-    Transaction(Account account, double amount, int type) {
+    public Transaction(Account account, double amount, int type) {
         this.account = account;
         this.amount = amount;
-        this.timestamp = new Date();
+        this.type = type;
         transactionHistory = new TransactionHistory();
+        currentDate = LocalDate.now();
+    }
+    public double getAmount() {
+        return amount;
+    }
+
+    public LocalDate getCurrentDate() {
+        return currentDate;
+    }
+
+    public int getType() {
+        return type;
     }
 }

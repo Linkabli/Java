@@ -37,6 +37,7 @@
          <font>
             <Font name="Ink Free" size="18.0" />
          </font></Label>
-      <Button fx:id="TransactionHistory" layoutX="25.0" layoutY="322.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="251.0" text="История транзакций" />
+      <Button fx:id="TransactionHistory" layoutX="25.0" layoutY="381.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="500.0" text="История транзакций" />
+      <Button fx:id="TransanctionToClient" layoutX="25.0" layoutY="321.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="500.0" text="Перевод клиенту банка" />
    </children>
 </AnchorPane>

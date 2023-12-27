@@ -1,7 +1,10 @@
 package org.example.bank;
 
 import ProjectClasses.Customer;
+import ProjectClasses.Transaction;
+
 import java.sql.*;
+import java.time.LocalDate;
 
 public class DataBaseHandler extends Configs {
     Connection dbConnection;
@@ -62,15 +65,31 @@ public class DataBaseHandler extends Configs {
         }
         return user;
     }
-    public void updateUserBalance(Customer user, double balance) {
+    public void updateUserBalance(Customer user, double balance, Transaction transaction) {
+        System.out.println("----" + balance);
+        double newBalance = user.getBalance() + balance;
+        System.out.println("----" + newBalance);
+        Date Date1 = Date.valueOf(transaction.getCurrentDate());
         String update = "UPDATE " + Const.USER_TABLE + " SET " + Const.USER_BALANCE + "=? WHERE " + Const.USER_LOGIN + "=?";
-
+        String insertTransaction = "INSERT INTO " +
+                Const.USER_TRANSACTION_TABLE + "("
+                + Const.USER_LOGIN + ", "
+                + Const.USER_AMOUNT + ", "
+                + Const.USER_DATE + ", "
+                + Const.USER_TYPE_OF_TRANSANCTION +
+                ") VALUES(?, ?, ?, ?)";
         try {
             PreparedStatement prSt = getDbConnection().prepareStatement(update);
-            prSt.setDouble(1, user.getBalance()+balance); // Новое значение баланса
+            prSt.setDouble(1, newBalance); // Новое значение баланса
             prSt.setString(2, user.getLogin());
-
             int rowsAffected = prSt.executeUpdate();
+            PreparedStatement prStTransaction = getDbConnection().prepareStatement(insertTransaction);
+            prStTransaction.setString(1, user.getLogin());
+            prStTransaction.setDouble(2, transaction.getAmount());
+            prStTransaction.setDate(3, Date1);
+            prStTransaction.setInt(4, transaction.getType());
+
+            int rowsAffectedTransaction = prStTransaction.executeUpdate();
             if (rowsAffected > 0) {
                 System.out.println("Баланс пользователя успешно обновлен.");
             } else {
