@@ -52,8 +52,9 @@ public class DataBaseHandler extends Configs {
                         resSet.getString(Const.USER_LASTNAME),
                         resSet.getString(Const.USER_LOGIN),
                         resSet.getString(Const.USER_PASS),
-                        resSet.getDouble(Const.USER_BALANCE)
-
+                        resSet.getDouble(Const.USER_BALANCE),
+                        resSet.getDouble(Const.USER_CREDIT_LIMIT),
+                        resSet.getDouble(Const.USER_CREDIT_BALANCE)
                 );
             }
         } catch (SQLException | ClassNotFoundException e) {
@@ -61,6 +62,23 @@ public class DataBaseHandler extends Configs {
         }
         return user;
     }
+    public void updateUserBalance(Customer user, double balance) {
+        String update = "UPDATE " + Const.USER_TABLE + " SET " + Const.USER_BALANCE + "=? WHERE " + Const.USER_LOGIN + "=?";
 
+        try {
+            PreparedStatement prSt = getDbConnection().prepareStatement(update);
+            prSt.setDouble(1, user.getBalance()+balance); // Новое значение баланса
+            prSt.setString(2, user.getLogin());
+
+            int rowsAffected = prSt.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Баланс пользователя успешно обновлен.");
+            } else {
+                System.out.println("Пользователь с логином " + user.getLogin() + " не найден.");
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

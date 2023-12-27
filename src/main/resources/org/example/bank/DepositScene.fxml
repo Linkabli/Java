@@ -16,7 +16,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="56.0" layoutY="100.0" AnchorPane.bottomAnchor="87.4" />
+      <TextField fx:id="DepositField" layoutX="56.0" layoutY="100.0" AnchorPane.bottomAnchor="87.4" />
       <Button fx:id="ButtonDepositAction" layoutX="55.0" layoutY="141.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="150.0" text="Пополнить" />
    </children>
 </AnchorPane>

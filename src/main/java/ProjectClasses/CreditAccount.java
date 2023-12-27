@@ -2,12 +2,10 @@ package ProjectClasses;
 
 public class CreditAccount extends Account {
     private double creditLimit;
-    private double interestRate;
 
-    public CreditAccount(Customer owner, double creditLimit, double interestRate) {
-        super(owner, 0);  // Кредитный счет начинается с нулевого баланса
+    public CreditAccount(Customer owner, double creditLimit, double creditBalance) {
+        super(owner, creditBalance);  // Кредитный счет начинается с нулевого баланса
         this.creditLimit = creditLimit;
-        this.interestRate = interestRate;
     }
     @Override
     void withdraw(double amount) {

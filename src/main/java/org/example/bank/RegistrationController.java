@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -65,13 +66,9 @@ public class RegistrationController {
             Parent root = loader.getRoot();
             Stage stage = new Stage();
             stage.setTitle("МойБанк");
-            //stage.getIcons().add(new Image("2830284.png"));
+            stage.getIcons().add(new Image("2830284.png"));
             stage.setScene(new Scene(root));
             stage.show();
         });
-    }
-
-    public void registerUser(String name, String lastname, String login, String password) {
-
     }
 }

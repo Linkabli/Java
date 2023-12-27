@@ -13,17 +13,12 @@ public class Account {
         this.balance = initialBalance;
 
     }
-
-    void deposit(double amount) { //пополнение
-        balance += amount;
-    }
-    double getBalance() {
+    public double getBalance() {
         return balance;
     }
     public void Transaction() {
         newTransaction = new Transaction(this, amount, indexType);
     }
-
     void withdraw(double amount) { //снятие
         if (amount <= balance) {
             balance -= amount;
@@ -31,5 +26,4 @@ public class Account {
             System.out.println("Недостаточно средств.");
         }
     }
-
 }
