@@ -131,24 +131,18 @@ public class DataBaseHandler extends Configs {
         updateUserBalance(Client, amount, TransactionClient);
     }
 
-    public List<TransactionHistory> getTransactionHistoryFromDatabase(ArrayList<TransactionHistory> list, Customer user) throws SQLException {
-        String select = "SELECT * FROM " + Const.USER_TABLE + " WHERE " + Const.USER_LOGIN + "=?";
+    public ArrayList<Transaction> getTransactionHistoryFromDatabase(ArrayList<Transaction> list, Customer user) throws SQLException {
+        String select = "SELECT * FROM " + Const.USER_TRANSACTION_TABLE + " WHERE " + Const.USER_LOGIN + "=?";
         try {
             PreparedStatement prSt = getDbConnection().prepareStatement(select);
-            prSt.setString(1, username);
+            prSt.setString(1, user.getLogin());
             ResultSet resSet = prSt.executeQuery();
-
-            if (resSet.next()) {
-
-                user = new Customer(
-                        resSet.getString(Const.USER_NAME),
-                        resSet.getString(Const.USER_LASTNAME),
-                        resSet.getString(Const.USER_LOGIN),
-                        resSet.getString(Const.USER_PASS),
-                        resSet.getDouble(Const.USER_BALANCE),
-                        resSet.getDouble(Const.USER_CREDIT_LIMIT),
-                        resSet.getDouble(Const.USER_CREDIT_BALANCE)
-                );
+            while (resSet.next()) {
+                Transaction tempTransaction = new Transaction(
+                        user.getAccount(),
+                        resSet.getDouble(Const.USER_AMOUNT),
+                        resSet.getInt(Const.USER_TYPE_OF_TRANSANCTION));
+                list.add(tempTransaction);
             }
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();

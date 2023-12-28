@@ -5,7 +5,7 @@ import java.util.List;
 
 public class TransactionHistory {
     Account account;
-    private List<Transaction> transactions;
+    private ArrayList<Transaction> transactions;
     private int indexTransaction;
 
     public TransactionHistory() {
@@ -17,7 +17,7 @@ public class TransactionHistory {
         transactions.add(transaction);
         indexTransaction++;
     }
-    public List<Transaction> getList() {
+    public ArrayList<Transaction> getList() {
         return transactions;
     }
 }
