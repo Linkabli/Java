@@ -9,12 +9,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class TransactionTable {
     private Stage stage;
@@ -41,28 +38,23 @@ public class TransactionTable {
         this.stage = stage;
         this.user = user;
     }
-
     @FXML
     void initialize() throws SQLException {
         login = user.getLogin();
         name = user.getFirstname();
 
-        // Устанавливаем фабрику ячеек для столбцов
         ColumnLogin.setCellValueFactory(cellData -> new SimpleStringProperty(login));
         ColumnName.setCellValueFactory(cellData -> new SimpleStringProperty(name));
         ColumnSum.setCellValueFactory(new PropertyValueFactory<>("amount"));
         ColumnType.setCellValueFactory(new PropertyValueFactory<>("type"));
         ColumnDate.setCellValueFactory(new PropertyValueFactory<>("currentDate"));
 
-        // Очищаем TableView перед загрузкой новых данных
         TableView.getItems().clear();
 
         DataBaseHandler dbHandler = new DataBaseHandler();
         TransactionHistory transactionHistory = new TransactionHistory();
         ArrayList<Transaction> transactions = transactionHistory.getList();
         transactions = dbHandler.getTransactionHistoryFromDatabase(transactions, user);
-
-        // Загружаем данные в TableView
         loadDataToTable(transactionHistory, TableView);
     }
 

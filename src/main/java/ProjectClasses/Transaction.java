@@ -1,7 +1,6 @@
 package ProjectClasses;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Transaction {
     private Account account;

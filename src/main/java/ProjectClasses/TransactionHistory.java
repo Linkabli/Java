@@ -1,7 +1,6 @@
 package ProjectClasses;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class TransactionHistory {
     Account account;
@@ -12,11 +11,6 @@ public class TransactionHistory {
         this.transactions = new ArrayList<>();
         indexTransaction = 1;
   }
-
-    void addTransaction(Transaction transaction) {
-        transactions.add(transaction);
-        indexTransaction++;
-    }
     public ArrayList<Transaction> getList() {
         return transactions;
     }

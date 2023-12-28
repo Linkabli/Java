@@ -50,7 +50,6 @@ public class DataBaseHandler extends Configs {
             PreparedStatement prSt = getDbConnection().prepareStatement(select);
             prSt.setString(1, username);
             ResultSet resSet = prSt.executeQuery();
-
             if (resSet.next()) {
                 // Создаем объект Customer и заполняем его данными из ResultSet
                 user = new Customer(
@@ -148,5 +147,39 @@ public class DataBaseHandler extends Configs {
             e.printStackTrace();
         }
         return list;
+    }
+    public void updateUserCreditBalance(Customer user, double balance, Transaction transaction) {
+        double newBalance = user.getBalance() + balance;
+        double newCreditBalance = user.getCreditAccount().getBalance() + balance;
+        Date Date1 = Date.valueOf(transaction.getCurrentDate());
+        String update = "UPDATE " + Const.USER_TABLE + " SET " + Const.USER_CREDIT_BALANCE + "=?, " + Const.USER_BALANCE + "=? WHERE " + Const.USER_LOGIN + "=?";
+        String insertTransaction = "INSERT INTO " +
+                Const.USER_TRANSACTION_TABLE + "("
+                + Const.USER_LOGIN + ", "
+                + Const.USER_AMOUNT + ", "
+                + Const.USER_DATE + ", "
+                + Const.USER_TYPE_OF_TRANSANCTION +
+                ") VALUES(?, ?, ?, ?)";
+        try {
+            PreparedStatement prSt = getDbConnection().prepareStatement(update);
+            prSt.setDouble(1, newCreditBalance);
+            prSt.setDouble(2, newBalance);
+            prSt.setString(3, user.getLogin());
+            int rowsAffected = prSt.executeUpdate();
+            PreparedStatement prStTransaction = getDbConnection().prepareStatement(insertTransaction);
+            prStTransaction.setString(1, user.getLogin());
+            prStTransaction.setDouble(2, transaction.getAmount());
+            prStTransaction.setDate(3, Date1);
+            prStTransaction.setInt(4, transaction.getType());
+
+            int rowsAffectedTransaction = prStTransaction.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Баланс пользователя успешно обновлен.");
+            } else {
+                System.out.println("Пользователь с логином " + user.getLogin() + " не найден.");
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

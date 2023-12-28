@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -27,6 +26,8 @@ public class MainMenuController {
     private Button TransactionHistory;
     @FXML
     private Button TransanctionToClient;
+    @FXML
+    private Button GetCreditMoney;
 
     public MainMenuController(String login) {
         this.username = login;
@@ -54,6 +55,14 @@ public class MainMenuController {
         TransanctionToClient.setOnAction(actionEvent -> {
             signedUser.set(TransanctionToClientAction(signedUser.get()));
             UpdateScene(signedUser.get());
+        });
+        GetCreditMoney.setOnAction(actionEvent -> {
+            try {
+                signedUser.set(GetCreditMoneyAction(signedUser.get()));
+                UpdateScene(signedUser.get());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
     }
     public Customer DepositButton(Customer user) throws IOException {
@@ -83,7 +92,6 @@ public class MainMenuController {
         }
         return ReturnNewDATA();
     }
-
     public Customer ReturnNewDATA() {
         DataBaseHandler dbHandler = new DataBaseHandler();
         Customer user = dbHandler.getUserDataByName(username);
@@ -142,6 +150,32 @@ public class MainMenuController {
             Scene TransanctionToClientScene = new Scene(root);
             TransanctionToClientStage.setScene(TransanctionToClientScene);
             TransanctionToClientStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return ReturnNewDATA();
+    }
+    public Customer GetCreditMoneyAction(Customer user) throws IOException {
+        Stage GetCreditMoneyStage = new Stage();
+        try {
+            FXMLLoader Loader = new FXMLLoader(getClass().getResource("GetCreditMoney.fxml"));
+            Loader.setControllerFactory(controllerClass -> {
+                if (controllerClass == GetCreditMoney.class) {
+                    return new GetCreditMoney(user, GetCreditMoneyStage);
+                } else {
+                    try {
+                        return controllerClass.newInstance();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
+
+            Parent root = Loader.load();
+            Scene depositScene = new Scene(root, 250, 213);
+            GetCreditMoneyStage.setScene(depositScene);
+            GetCreditMoneyStage.showAndWait();
 
         } catch (IOException e) {
             e.printStackTrace();
